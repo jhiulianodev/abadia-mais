@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Novo site — Agendamento</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#005A8E;text-decoration:none}a:hover{color:#0B2540}
+h1,h2,h3{font-family:Poppins,system-ui,sans-serif}
+button{font-family:inherit;cursor:pointer;min-height:48px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:4px solid #FFC83D;outline-offset:2px}
+input{font-family:inherit}
+</style>
+</helmet>
+<div style="font-family: 'Atkinson Hyperlegible', system-ui, sans-serif; font-size: 18px; color: #0B2540; background: #F4F8FB; min-height: 100vh">
+  <header style="background: #FFFFFF; border-bottom: 1px solid #E8ECEF">
+    <div style="max-width: 1040px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+      <a href="SiteHome.dc.html"><img src="/_blob/754259decd7931ddea7a24b19761295b" alt="Abadia Mais — voltar ao início" style="height: 50px; width: auto; display: block"></a>
+      <a href="SiteHome.dc.html" style="font-weight: 600; font-size: 17px">← Voltar ao início</a>
+    </div>
+  </header>
+
+  <main style="max-width: 1040px; margin: 0 auto; padding: 40px 24px 64px; display: flex; flex-direction: column; gap: 28px">
+    <div>
+      <p style="margin: 0 0 6px; color: #005A8E; font-weight: 700; font-size: 17px; letter-spacing: 2px">AGENDAMENTO ONLINE</p>
+      <h1 style="margin: 0; font-size: 36px">Marque seu atendimento</h1>
+    </div>
+
+    <ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+        <li style="display: flex; flex-direction: column; gap: 8px">
+          <span style="height: 6px; border-radius: 3px; background: {{ s.bar }}"></span>
+          <span style="font-size: 16px; font-weight: 600; color: {{ s.color }}">{{ s.label }}</span>
+        </li>
+      </sc-for>
+    </ol>
+
+    <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+      <section style="display: flex; flex-direction: column; gap: 16px">
+        <h2 style="margin: 0; font-size: 22px">1. Qual atendimento você quer marcar?</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px">
+          <sc-for list="{{ services }}" as="sv" hint-placeholder-count="4">
+            <button type="button" onClick="{{ sv.pick }}" style="text-align: left; display: flex; flex-direction: column; gap: 10px; padding: 22px; border-radius: 18px; background: #FFFFFF; border: {{ sv.border }}; color: #0B2540; font-size: 17px">
+              <span style="width: 48px; height: 48px; border-radius: 14px; background: #EEF5FA; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#005A8E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{ sv.icon }}"></path></svg></span>
+              <span style="font-family: Poppins; font-weight: 700; font-size: 18px">{{ sv.name }}</span>
+              <span style="color: #555C68; line-height: 1.5">{{ sv.desc }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+      <section style="display: flex; flex-direction: column; gap: 22px; background: #FFFFFF; border-radius: 22px; padding: 28px">
+        <h2 style="margin: 0; font-size: 22px">2. Onde e quando? <span style="color: #005A8E">· {{ serviceName }}</span></h2>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <p style="margin: 0; font-weight: 600">Local</p>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap">
+            <sc-for list="{{ units }}" as="u" hint-placeholder-count="2">
+              <button type="button" onClick="{{ u.pick }}" style="padding: 12px 18px; border-radius: 12px; border: {{ u.border }}; background: {{ u.bg }}; color: #0B2540; font-size: 17px; font-weight: 600">{{ u.name }}</button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <p style="margin: 0; font-weight: 600">Dia</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px">
+            <sc-for list="{{ days }}" as="d" hint-placeholder-count="5">
+              <button type="button" onClick="{{ d.pick }}" style="padding: 14px 8px; border-radius: 14px; border: {{ d.border }}; background: {{ d.bg }}; color: {{ d.fg }}; font-size: 16px"><span style="display: block; font-weight: 600">{{ d.week }}</span><span style="display: block; font-family: Poppins; font-size: 22px; font-weight: 700">{{ d.date }}</span><span style="display: block; font-size: 16px; opacity: 0.8">{{ d.free }}</span></button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <p style="margin: 0; font-weight: 600">Horário</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 8px">
+            <sc-for list="{{ times }}" as="t" hint-placeholder-count="8">
+              <button type="button" onClick="{{ t.pick }}" style="padding: 12px; border-radius: 12px; border: {{ t.border }}; background: {{ t.bg }}; color: {{ t.fg }}; font-size: 17px; font-weight: 600">{{ t.time }}</button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+          <button type="button" onClick="{{ back }}" style="padding: 16px 26px; border-radius: 14px; border: 1px solid #CBD5DD; background: #FFFFFF; font-size: 17px; font-weight: 600; color: #0B2540">Voltar</button>
+          <button type="button" onClick="{{ next }}" style="padding: 16px 30px; border-radius: 14px; border: 0; background: #005A8E; color: #FFFFFF; font-size: 17px; font-weight: 700">Continuar</button>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+      <section style="display: flex; gap: 20px; flex-wrap: wrap">
+        <div style="flex: 1 1 480px; min-width: 0; background: #FFFFFF; border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+          <h2 style="margin: 0; font-size: 22px">3. Seus dados</h2>
+          <a href="#" style="display: flex; justify-content: center; padding: 14px; border-radius: 12px; background: #EEF5FA; font-weight: 700">Preencher com gov.br</a>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 16px">Nome completo<input value="Maria Aparecida da Silva" style="padding: 16px; border-radius: 14px; border: 2px solid #8FB3CC; font-size: 16px"></label>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap">
+            <label style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 16px">CPF<input value="000.000.000-00" style="padding: 16px; border-radius: 14px; border: 2px solid #8FB3CC; font-size: 16px"></label>
+            <label style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 16px">Celular (WhatsApp)<input value="(62) 9 0000-0000" style="padding: 16px; border-radius: 14px; border: 2px solid #8FB3CC; font-size: 16px"></label>
+          </div>
+          <label style="display: flex; gap: 10px; align-items: center; font-size: 17px"><input type="checkbox" checked style="width: 20px; height: 20px">Quero lembrete no WhatsApp um dia antes</label>
+          <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+            <button type="button" onClick="{{ back }}" style="padding: 16px 26px; border-radius: 14px; border: 1px solid #CBD5DD; background: #FFFFFF; font-size: 17px; font-weight: 600; color: #0B2540">Voltar</button>
+            <button type="button" onClick="{{ next }}" style="padding: 16px 30px; border-radius: 14px; border: 0; background: #005A8E; color: #FFFFFF; font-size: 17px; font-weight: 700">Confirmar agendamento</button>
+          </div>
+        </div>
+        <aside style="flex: 1 1 300px; min-width: 0; background: #0B2540; color: #FFFFFF; border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+          <h3 style="margin: 0; font-size: 18px">Resumo</h3>
+          <p style="margin: 0; font-size: 17px; line-height: 1.7; color: #DCEEF7"><b style="color: #FFFFFF">{{ serviceName }}</b><br>{{ unitName }}<br>{{ dayLabel }} às {{ timeLabel }}</p>
+          <h3 style="margin: 8px 0 0; font-size: 18px">Leve no dia</h3>
+          <ul style="margin: 0; padding-left: 18px; font-size: 16px; line-height: 1.7; color: #DCEEF7">
+            <sc-for list="{{ docs }}" as="doc" hint-placeholder-count="3"><li>{{ doc }}</li></sc-for>
+          </ul>
+        </aside>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ isStep4 }}" hint-placeholder-val="{{ false }}">
+      <section style="background: #FFFFFF; border-radius: 22px; padding: 40px 28px; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center">
+        <span style="width: 72px; height: 72px; border-radius: 50%; background: #EEF5FA; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#005A8E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span>
+        <h2 style="margin: 0; font-size: 28px">Agendamento confirmado!</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #444B57"><b>{{ serviceName }}</b> · {{ unitName }}<br>{{ dayLabel }} às {{ timeLabel }}</p>
+        <p style="margin: 0; padding: 10px 18px; border-radius: 12px; background: #F4F8FB; font-family: Poppins; font-weight: 700; font-size: 18px; letter-spacing: 1px">Protocolo AGD-2026-004817</p>
+        <p style="margin: 0; font-size: 16px; color: #555C68">Enviamos o comprovante no seu WhatsApp. Chegue 15 minutos antes.</p>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center">
+          <a href="#" style="padding: 16px 26px; border-radius: 14px; background: #005A8E; color: #FFFFFF; font-weight: 700">Adicionar à agenda</a>
+          <button type="button" onClick="{{ restart }}" style="padding: 16px 26px; border-radius: 14px; border: 1px solid #CBD5DD; background: #FFFFFF; font-size: 17px; font-weight: 600; color: #0B2540">Novo agendamento</button>
+          <a href="SiteHome.dc.html" style="padding: 16px 26px; border-radius: 14px; border: 1px solid #CBD5DD; color: #0B2540; font-weight: 600">Voltar ao início</a>
+        </div>
+      </section>
+    </sc-if>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1200}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { step: 1, svc: 0, unit: 0, day: 0, time: 2 }; }
+  renderVals() {
+    const S = this.state;
+    const SV = [
+      { name: 'Consulta na UBS', icon: 'M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21.2l8.8-8.8a5.5 5.5 0 0 0 0-7.8z', desc: 'Clínico, pediatria, ginecologia, odontologia.', units: ['UBS [Nome 1]', 'UBS [Nome 2]', 'UBS [Nome 3]'], docs: ['Documento com foto', 'Cartão do SUS', 'Comprovante de endereço'] },
+      { name: 'Vapt Vupt', icon: 'M4 21V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16M2 21h20M9 7h2M13 7h2M9 11h2M13 11h2M10 21v-4h4v4', desc: 'Serviços do Estado com hora marcada.', units: ['Vapt Vupt [unidade]'], docs: ['Documento com foto', 'CPF', 'Documentos do serviço escolhido'] },
+      { name: 'Junta Militar', icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z', desc: 'Alistamento e certificado militar.', units: ['Junta de Serviço Militar'], docs: ['Certidão de nascimento ou RG', 'CPF', 'Comprovante de endereço'] },
+      { name: 'Carteira de Identidade', icon: 'M3 5h18v14H3zM7 15h4M7 11h4M16 13a2 2 0 1 0 0-4 2 2 0 0 0 0 4z', desc: 'Nova CIN — 1ª e 2ª via.', units: ['Posto de Identificação'], docs: ['Certidão de nascimento ou casamento', 'CPF', 'Comprovante de endereço'] }
+    ];
+    const DAYS = [['Qua', '26/11', '12 vagas'], ['Qui', '27/11', '8 vagas'], ['Sex', '28/11', '3 vagas'], ['Seg', '01/12', '15 vagas'], ['Ter', '02/12', '15 vagas']];
+    const TIMES = ['07:30', '08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '13:00', '13:30', '14:00', '14:30', '15:00'];
+    const sel = (on) => ({ border: on ? '2px solid #005A8E' : '1px solid #DCE3E8', bg: on ? '#005A8E' : '#FFFFFF', fg: on ? '#FFFFFF' : '#0B2540' });
+    const svc = SV[S.svc];
+    const labels = ['Serviço', 'Local e horário', 'Seus dados', 'Confirmação'];
+    return {
+      isStep1: S.step === 1, isStep2: S.step === 2, isStep3: S.step === 3, isStep4: S.step === 4,
+      steps: labels.map((l, i) => ({ label: (i + 1) + '. ' + l, bar: i < S.step ? '#005A8E' : '#D6E2EA', color: i < S.step ? '#0B2540' : '#6B7280' })),
+      services: SV.map((s, i) => ({ ...s, border: i === S.svc && S.step > 1 ? '2px solid #005A8E' : '1px solid #DCE3E8', pick: () => this.setState({ svc: i, unit: 0, step: 2 }) })),
+      units: svc.units.map((n, i) => { const o = sel(i === S.unit); return { name: n, border: o.border, bg: i === S.unit ? '#EEF5FA' : '#FFFFFF', pick: () => this.setState({ unit: i }) }; }),
+      days: DAYS.map((d, i) => ({ week: d[0], date: d[1], free: d[2], ...sel(i === S.day), pick: () => this.setState({ day: i }) })),
+      times: TIMES.map((t, i) => ({ time: t, ...sel(i === S.time), pick: () => this.setState({ time: i }) })),
+      serviceName: svc.name, unitName: svc.units[S.unit] || svc.units[0],
+      dayLabel: DAYS[S.day][0] + ', ' + DAYS[S.day][1], timeLabel: TIMES[S.time], docs: svc.docs,
+      next: () => this.setState({ step: Math.min(4, S.step + 1) }),
+      back: () => this.setState({ step: Math.max(1, S.step - 1) }),
+      restart: () => this.setState({ step: 1 })
+    };
+  }
+}
+</script>
+</body>
+</html>

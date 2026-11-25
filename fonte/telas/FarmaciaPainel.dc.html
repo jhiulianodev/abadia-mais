@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Painel da Farmácia Municipal</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#005A8E}a:hover{color:#00476F}
+button{font-family:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:4px solid #FFC83D;outline-offset:2px}
+</style>
+</helmet>
+<div style="width: 1280px; height: 860px; box-sizing: border-box; display: flex; font-family: 'Atkinson Hyperlegible', system-ui, sans-serif; color: #0B2540; background: #F5F8FA; font-size: 16px">
+  <aside style="width: 250px; background: #0B2540; color: #D2E2EE; padding: 22px 14px; display: flex; flex-direction: column; gap: 6px; flex: none">
+    <img src="/_blob/38ace4b0b8e76f931ea2ab5b4dbd43b4" alt="Abadia Mais" style="width: 210px; height: auto; margin-bottom: 6px">
+    <p style="margin: 0 0 14px 6px; font-size: 14px; letter-spacing: 1px; color: #8FB3CC">FARMÁCIA MUNICIPAL</p>
+    <sc-for list="{{ menu }}" as="m" hint-placeholder-count="6">
+      <a href="#" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 12px; border-radius: 12px; background: {{ m.bg }}; color: #FFFFFF; font-weight: 700; text-decoration: none"><span>{{ m.label }}</span><span style="min-width: 28px; padding: 2px 8px; border-radius: 999px; background: {{ m.countBg }}; color: {{ m.countFg }}; text-align: center; font-size: 14px">{{ m.count }}</span></a>
+    </sc-for>
+    <div style="flex: 1"></div>
+    <p style="margin: 0; padding: 10px; font-size: 14px; color: #8FB3CC">Farmacêutico(a) responsável<br><b style="color: #FFFFFF">[Nome] · CRF [nº]</b></p>
+  </aside>
+
+  <section style="width: 400px; border-right: 1px solid #DDE6EE; background: #FFFFFF; display: flex; flex-direction: column; flex: none">
+    <div style="padding: 22px 20px 14px; border-bottom: 1px solid #DDE6EE">
+      <h1 style="margin: 0; font-family: Poppins; font-size: 22px">Receitas para verificar</h1>
+      <p style="margin: 4px 0 0; color: #4A5B6C">5 aguardando · mais antigas primeiro</p>
+    </div>
+    <div style="flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 8px">
+      <sc-for list="{{ fila }}" as="f" hint-placeholder-count="5">
+        <a href="#" style="display: flex; flex-direction: column; gap: 4px; padding: 14px; border-radius: 14px; border: {{ f.border }}; background: {{ f.bg }}; color: #0B2540; text-decoration: none">
+          <span style="display: flex; justify-content: space-between; gap: 8px"><b style="font-size: 17px">{{ f.nome }}</b><span style="color: #4A5B6C">{{ f.hora }}</span></span>
+          <span style="color: #4A5B6C">Pedido nº {{ f.num }} · {{ f.meds }}</span>
+          <span style="align-self: flex-start; padding: 3px 10px; border-radius: 999px; background: {{ f.tagBg }}; color: {{ f.tagFg }}; font-size: 14px; font-weight: 700">{{ f.tag }}</span>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <main style="flex: 1; min-width: 0; padding: 22px 26px; display: flex; flex-direction: column; gap: 16px; overflow-y: auto">
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+      <div><p style="margin: 0; color: #4A5B6C">Pedido nº 4821 · enviado pelo app em 25/11 às 10:42</p><h2 style="margin: 2px 0 0; font-family: Poppins; font-size: 24px">Jhiuliano Quinta de Lucia</h2></div>
+      <span style="padding: 6px 14px; border-radius: 999px; background: {{ stBg }}; color: {{ stFg }}; font-weight: 700">{{ stLabel }}</span>
+    </div>
+    <div style="display: flex; gap: 18px">
+      <div style="width: 230px; height: 300px; border-radius: 14px; background: #FFFFFF; border: 1px solid #DDE6EE; padding: 18px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px; flex: none">
+        <span style="font-size: 13px; font-weight: 700; color: #4A5B6C">FOTO DA RECEITA</span>
+        <span style="height: 6px; background: #C9D3DB; border-radius: 3px"></span><span style="height: 6px; width: 70%; background: #C9D3DB; border-radius: 3px"></span><span style="height: 6px; background: #C9D3DB; border-radius: 3px"></span><span style="height: 6px; width: 55%; background: #C9D3DB; border-radius: 3px"></span><span style="height: 6px; width: 80%; background: #C9D3DB; border-radius: 3px"></span>
+        <div style="flex: 1"></div>
+        <a href="#" style="font-weight: 700">Ampliar receita</a>
+      </div>
+      <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+        <div style="padding: 14px 16px; border-radius: 14px; background: #FFFFFF; border: 1px solid #DDE6EE; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 16px">
+          <span><span style="display: block; color: #4A5B6C; font-size: 14px">CPF</span><b>000.000.000-00</b></span>
+          <span><span style="display: block; color: #4A5B6C; font-size: 14px">Cartão do SUS</span><b>000 0000 0000 0000</b></span>
+          <span><span style="display: block; color: #4A5B6C; font-size: 14px">Entrega</span><b>Em casa · motorista da Saúde</b></span>
+          <span><span style="display: block; color: #4A5B6C; font-size: 14px">Endereço</span><b>Rua [nome], Jd. Nova Abadia</b></span>
+        </div>
+        <div style="padding: 12px 16px; border-radius: 14px; background: #FFF6DC; color: #3D2B00"><b>Observação do paciente:</b> Remédio de uso contínuo. Preciso para 2 meses.</div>
+        <div style="padding: 14px 16px; border-radius: 14px; background: #FFFFFF; border: 1px solid #DDE6EE; display: flex; flex-direction: column; gap: 8px">
+          <b>Conferência dos itens</b>
+          <sc-for list="{{ itens }}" as="i" hint-placeholder-count="3">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid #EEF2F5"><span style="display: flex; gap: 10px; align-items: center"><span style="width: 22px; height: 22px; border-radius: 6px; border: 2px solid #005A8E; background: {{ i.box }}"></span>{{ i.nome }}</span><span style="padding: 3px 10px; border-radius: 999px; background: {{ i.bg }}; color: {{ i.fg }}; font-size: 14px; font-weight: 700">{{ i.estoque }}</span></div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+    <div style="padding: 16px; border-radius: 14px; background: #FFFFFF; border: 1px solid #DDE6EE; display: flex; flex-direction: column; gap: 10px">
+      <b>Checklist da receita</b>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 18px">
+        <span style="display: flex; gap: 8px; align-items: center"><span style="width: 20px; height: 20px; border-radius: 5px; background: #1B7A43"></span>Dentro da validade</span>
+        <span style="display: flex; gap: 8px; align-items: center"><span style="width: 20px; height: 20px; border-radius: 5px; background: #1B7A43"></span>Nome do paciente confere</span>
+        <span style="display: flex; gap: 8px; align-items: center"><span style="width: 20px; height: 20px; border-radius: 5px; background: #1B7A43"></span>Carimbo e assinatura do médico</span>
+        <span style="display: flex; gap: 8px; align-items: center"><span style="width: 20px; height: 20px; border-radius: 5px; background: #1B7A43"></span>Remédios da lista do SUS</span>
+      </div>
+    </div>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap">
+      <button type="button" onClick="{{ aprovar }}" style="min-height: 52px; padding: 0 22px; border-radius: 12px; border: 0; background: #1B7A43; color: #FFFFFF; font-size: 17px; font-weight: 700">Aprovar e enviar para separação</button>
+      <button type="button" onClick="{{ coleta }}" style="min-height: 52px; padding: 0 22px; border-radius: 12px; border: 0; background: #005A8E; color: #FFFFFF; font-size: 17px; font-weight: 700">Liberar para coleta do motorista</button>
+      <button type="button" onClick="{{ recusar }}" style="min-height: 52px; padding: 0 22px; border-radius: 12px; border: 2px solid #F0B8B3; background: #FFFFFF; color: #B42318; font-size: 17px; font-weight: 700">Recusar com motivo</button>
+    </div>
+    <p style="margin: 0; color: #4A5B6C">O paciente recebe o aviso no app e no WhatsApp na hora.</p>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":860}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { st: 0 }; }
+  renderVals() {
+    const ST = [['Verificando receita', '#FFF6DC', '#5A3E00'], ['Aprovada · em separação', '#E3F5EA', '#17663A'], ['Aguardando coleta', '#EEF5FA', '#0B2540'], ['Recusada · paciente avisado', '#FDECEC', '#B42318']][this.state.st];
+    const sel = '#FFFFFF';
+    return {
+      stLabel: ST[0], stBg: ST[1], stFg: ST[2],
+      aprovar: () => this.setState({ st: 1 }), coleta: () => this.setState({ st: 2 }), recusar: () => this.setState({ st: 3 }),
+      menu: [
+        { label: 'Receitas para verificar', count: '5', bg: '#005A8E', countBg: '#FFC83D', countFg: '#0B2540' },
+        { label: 'Em separação', count: '3', bg: 'transparent', countBg: 'rgba(255,255,255,0.15)', countFg: sel },
+        { label: 'Aguardando retirada', count: '7', bg: 'transparent', countBg: 'rgba(255,255,255,0.15)', countFg: sel },
+        { label: 'Aguardando coleta', count: '4', bg: 'transparent', countBg: 'rgba(255,255,255,0.15)', countFg: sel },
+        { label: 'Saiu para entrega', count: '2', bg: 'transparent', countBg: 'rgba(255,255,255,0.15)', countFg: sel },
+        { label: 'Estoque', count: '!', bg: 'transparent', countBg: '#B42318', countFg: sel }
+      ],
+      fila: [
+        { nome: 'Jhiuliano Quinta de Lucia', hora: '10:42', num: '4821', meds: '3 itens', tag: 'Entrega em casa', tagBg: '#EEF5FA', tagFg: '#0B2540', border: '2px solid #005A8E', bg: '#EEF5FA' },
+        { nome: 'Paciente exemplo 2', hora: '10:15', num: '4820', meds: '1 item', tag: 'Retirada', tagBg: '#ECEFF2', tagFg: '#3D4A57', border: '1px solid #DDE6EE', bg: '#FFFFFF' },
+        { nome: 'Paciente exemplo 3', hora: '09:58', num: '4819', meds: '2 itens', tag: 'Entrega em casa', tagBg: '#EEF5FA', tagFg: '#0B2540', border: '1px solid #DDE6EE', bg: '#FFFFFF' },
+        { nome: 'Paciente exemplo 4', hora: '09:31', num: '4818', meds: '4 itens', tag: 'Retirada', tagBg: '#ECEFF2', tagFg: '#3D4A57', border: '1px solid #DDE6EE', bg: '#FFFFFF' },
+        { nome: 'Paciente exemplo 5', hora: '08:47', num: '4817', meds: '1 item', tag: 'Retirada', tagBg: '#ECEFF2', tagFg: '#3D4A57', border: '1px solid #DDE6EE', bg: '#FFFFFF' }
+      ],
+      itens: [
+        { nome: 'Losartana potássica 50 mg · 60 comp.', estoque: 'Em estoque', bg: '#E3F5EA', fg: '#17663A', box: '#005A8E' },
+        { nome: 'Metformina 850 mg · 60 comp.', estoque: 'Em estoque', bg: '#E3F5EA', fg: '#17663A', box: '#005A8E' },
+        { nome: 'Sinvastatina 20 mg · 30 comp.', estoque: 'Em falta', bg: '#FDECEC', fg: '#B42318', box: '#FFFFFF' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

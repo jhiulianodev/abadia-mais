@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Novo site — Pedir medicamento</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#005A8E;text-decoration:none}a:hover{color:#0B2540}
+h1,h2,h3{font-family:Poppins,system-ui,sans-serif}
+button{font-family:inherit;cursor:pointer;min-height:48px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:4px solid #FFC83D;outline-offset:2px}
+input{font-family:inherit}
+</style>
+</helmet>
+<div style="font-family: 'Atkinson Hyperlegible', system-ui, sans-serif; font-size: 18px; color: #0B2540; background: #F4F8FB; min-height: 100vh">
+  <header style="background: #FFFFFF; border-bottom: 1px solid #E8ECEF">
+    <div style="max-width: 1040px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+      <a href="SiteHome.dc.html"><img src="/_blob/754259decd7931ddea7a24b19761295b" alt="Abadia Mais — voltar ao início" style="height: 50px; width: auto; display: block"></a>
+      <a href="SiteHome.dc.html" style="font-weight: 600; font-size: 17px">← Voltar ao início</a>
+    </div>
+  </header>
+
+  <main style="max-width: 1040px; margin: 0 auto; padding: 40px 24px 64px; display: flex; flex-direction: column; gap: 28px">
+    <div>
+      <p style="margin: 0 0 6px; color: #005A8E; font-weight: 700; font-size: 17px; letter-spacing: 2px">FARMÁCIA MUNICIPAL</p>
+      <h1 style="margin: 0; font-size: 36px">Pedir medicamento</h1>
+    </div>
+
+    <ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+        <li style="display: flex; flex-direction: column; gap: 8px"><span style="height: 6px; border-radius: 3px; background: {{ s.bar }}"></span><span style="font-size: 16px; font-weight: 600; color: {{ s.color }}">{{ s.label }}</span></li>
+      </sc-for>
+    </ol>
+
+    <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+      <section style="display: flex; gap: 20px; flex-wrap: wrap">
+        <div style="flex: 1 1 460px; min-width: 0; background: #FFFFFF; border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 18px">
+          <h2 style="margin: 0; font-size: 22px">1. Envie a receita</h2>
+          <div style="border: 2px dashed #9CC3D8; border-radius: 18px; padding: 28px; display: flex; flex-direction: column; align-items: center; gap: 10px; background: #F4F8FB; text-align: center">
+            <svg aria-hidden="true" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#005A8E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2zM12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path></svg>
+            <p style="margin: 0; font-weight: 600">Tire uma foto ou anexe o PDF da receita</p>
+            <p style="margin: 0; font-size: 16px; color: #555C68">receita_dr_carlos.jpg · enviada</p>
+          </div>
+          <p style="margin: 0; font-weight: 600">Medicamentos da receita</p>
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <sc-for list="{{ meds }}" as="m" hint-placeholder-count="3">
+              <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 14px; border: 1px solid #E3EAEF">
+                <div><p style="margin: 0; font-weight: 600">{{ m.name }}</p><p style="margin: 2px 0 0; font-size: 17px; color: #555C68">{{ m.qty }}</p></div>
+                <span style="padding: 5px 10px; border-radius: 999px; font-size: 16px; font-weight: 700; background: {{ m.bg }}; color: {{ m.fg }}">{{ m.status }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 16px">Para quem é o remédio?<input value="Maria Aparecida da Silva · Cartão SUS 000 0000 0000 0000" style="padding: 16px; border-radius: 14px; border: 2px solid #8FB3CC; font-size: 17px"></label>
+          <button type="button" onClick="{{ next }}" style="align-self: flex-end; padding: 16px 30px; border-radius: 14px; border: 0; background: #005A8E; color: #FFFFFF; font-size: 17px; font-weight: 700">Continuar</button>
+        </div>
+        <aside style="flex: 1 1 280px; min-width: 0; background: #0B2540; color: #FFFFFF; border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+          <h3 style="margin: 0; font-size: 18px">Como funciona</h3>
+          <p style="margin: 0; font-size: 17px; line-height: 1.7; color: #DCEEF7">A farmácia confere a receita e separa os remédios disponíveis. Você escolhe se vai buscar com hora marcada ou receber em casa, e recebe cada atualização no WhatsApp.</p>
+          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #A9CFE3">Remédio em falta? Você é avisado assim que chegar.</p>
+        </aside>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+      <section style="background: #FFFFFF; border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 20px">
+        <h2 style="margin: 0; font-size: 22px">2. Como você quer receber?</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px">
+          <button type="button" onClick="{{ pickRetirar }}" style="text-align: left; padding: 22px; border-radius: 18px; border: {{ retirarBorder }}; background: {{ retirarBg }}; color: #0B2540; display: flex; flex-direction: column; gap: 8px; font-size: 17px">
+            <svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#005A8E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16M2 21h20M10 21v-4h4v4M12 7v6M9 10h6"></path></svg>
+            <span style="font-family: Poppins; font-weight: 700; font-size: 18px">Retirar na farmácia</span>
+            <span style="color: #555C68; line-height: 1.5">Escolha o horário e retire sem fila, mostrando o código do pedido.</span>
+          </button>
+          <button type="button" onClick="{{ pickEntrega }}" style="text-align: left; padding: 22px; border-radius: 18px; border: {{ entregaBorder }}; background: {{ entregaBg }}; color: #0B2540; display: flex; flex-direction: column; gap: 8px; font-size: 17px">
+            <svg aria-hidden="true" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#005A8E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h14v12H1zM15 9h4l3 3v4h-7M5.5 21a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM18.5 21a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path></svg>
+            <span style="font-family: Poppins; font-weight: 700; font-size: 18px">Receber em casa</span>
+            <span style="color: #555C68; line-height: 1.5">Entrega no endereço cadastrado. Ideal para idosos e quem tem dificuldade de locomoção.</span>
+          </button>
+        </div>
+        <sc-if value="{{ isRetirar }}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <p style="margin: 0; font-weight: 600">Farmácia Municipal · [endereço] — escolha o horário</p>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap">
+              <sc-for list="{{ slots }}" as="sl" hint-placeholder-count="4">
+                <button type="button" onClick="{{ sl.pick }}" style="padding: 12px 16px; border-radius: 12px; border: {{ sl.border }}; background: {{ sl.bg }}; color: {{ sl.fg }}; font-size: 17px; font-weight: 600">{{ sl.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isEntrega }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; gap: 12px">
+            <div style="display: flex; gap: 12px; flex-wrap: wrap">
+              <label style="flex: 3 1 260px; display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 16px">Endereço<input value="Rua [nome], Qd. 00, Lt. 00" style="padding: 16px; border-radius: 14px; border: 2px solid #8FB3CC; font-size: 17px"></label>
+              <label style="flex: 2 1 180px; display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 16px">Bairro<input value="Jardim Nova Abadia" style="padding: 16px; border-radius: 14px; border: 2px solid #8FB3CC; font-size: 17px"></label>
+            </div>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 16px">Ponto de referência e quem vai receber<input value="Casa azul de esquina · recebe: Maria" style="padding: 16px; border-radius: 14px; border: 2px solid #8FB3CC; font-size: 17px"></label>
+            <p style="margin: 0; font-size: 16px; color: #555C68">Previsão de entrega: até 2 dias úteis após a separação. Você recebe aviso quando sair para entrega.</p>
+          </div>
+        </sc-if>
+        <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+          <button type="button" onClick="{{ back }}" style="padding: 16px 26px; border-radius: 14px; border: 1px solid #CBD5DD; background: #FFFFFF; font-size: 17px; font-weight: 600; color: #0B2540">Voltar</button>
+          <button type="button" onClick="{{ next }}" style="padding: 16px 30px; border-radius: 14px; border: 0; background: #005A8E; color: #FFFFFF; font-size: 17px; font-weight: 700">Enviar pedido</button>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+      <section style="display: flex; gap: 20px; flex-wrap: wrap">
+        <div style="flex: 1 1 460px; min-width: 0; background: #FFFFFF; border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 18px">
+          <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center"><h2 style="margin: 0; font-size: 22px">Pedido MED-2026-4821</h2><span style="padding: 6px 12px; border-radius: 999px; background: #EEF5FA; color: #0B2540; font-size: 17px; font-weight: 700">{{ modeLabel }}</span></div>
+          <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column">
+            <sc-for list="{{ track }}" as="tr" hint-placeholder-count="4">
+              <li style="display: flex; gap: 14px">
+                <div style="display: flex; flex-direction: column; align-items: center"><span style="width: 22px; height: 22px; border-radius: 50%; background: {{ tr.dot }}; border: 3px solid {{ tr.ring }}; box-sizing: border-box; flex: none"></span><span style="width: 2px; flex: 1; min-height: 28px; background: #DCE3E8"></span></div>
+                <div style="padding-bottom: 18px"><p style="margin: 0; font-weight: 600; color: {{ tr.color }}">{{ tr.label }}</p><p style="margin: 2px 0 0; font-size: 17px; color: #6B7280">{{ tr.when }}</p></div>
+              </li>
+            </sc-for>
+          </ol>
+          <button type="button" onClick="{{ advance }}" style="align-self: flex-start; padding: 12px 18px; border-radius: 12px; border: 1px dashed #9CC3D8; background: #F4F8FB; color: #0B2540; font-size: 16px; font-weight: 600">Simular próxima etapa</button>
+        </div>
+        <aside style="flex: 1 1 280px; min-width: 0; background: #005A8E; color: #FFFFFF; border-radius: 22px; padding: 28px; display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center">
+          <h3 style="margin: 0; font-size: 18px">{{ asideTitle }}</h3>
+          <div style="width: 150px; height: 150px; border-radius: 16px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; color: #0B2540; font-family: Poppins; font-weight: 800; font-size: 26px">4821</div>
+          <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #DCEEF7">{{ asideText }}</p>
+          <a href="SiteHome.dc.html" style="padding: 12px 18px; border-radius: 12px; background: #FFFFFF; color: #0B2540; font-weight: 700">Voltar ao início</a>
+        </aside>
+      </section>
+    </sc-if>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1350}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { step: 1, mode: 'retirar', slot: 1, stage: 1 }; }
+  renderVals() {
+    const S = this.state;
+    const ret = S.mode === 'retirar';
+    const SLOTS = ['Hoje 14:00–15:00', 'Hoje 15:00–16:00', 'Amanhã 08:00–09:00', 'Amanhã 09:00–10:00', 'Amanhã 13:00–14:00'];
+    const stages = ret
+      ? [['Pedido recebido', 'Hoje, 10:42'], ['Receita conferida e em separação', 'Hoje, 11:15'], ['Pronto para retirada', 'Horário: ' + SLOTS[S.slot]], ['Retirado', '']]
+      : [['Pedido recebido', 'Hoje, 10:42'], ['Receita conferida e em separação', 'Hoje, 11:15'], ['Saiu para entrega', 'Previsão: amanhã à tarde'], ['Entregue', '']];
+    const card = (on) => ({ b: on ? '2px solid #005A8E' : '1px solid #DCE3E8', bg: on ? '#EEF5FA' : '#FFFFFF' });
+    const r = card(ret), e = card(!ret);
+    return {
+      isStep1: S.step === 1, isStep2: S.step === 2, isStep3: S.step === 3,
+      steps: ['Receita', 'Retirada ou entrega', 'Acompanhar'].map((l, i) => ({ label: (i + 1) + '. ' + l, bar: i < S.step ? '#005A8E' : '#D6E2EA', color: i < S.step ? '#0B2540' : '#6B7280' })),
+      meds: [
+        { name: 'Losartana potássica 50 mg', qty: '60 comprimidos · uso contínuo', status: 'Disponível', bg: '#E3F5EA', fg: '#17663A' },
+        { name: 'Metformina 850 mg', qty: '60 comprimidos · uso contínuo', status: 'Disponível', bg: '#E3F5EA', fg: '#17663A' },
+        { name: 'Sinvastatina 20 mg', qty: '30 comprimidos', status: 'Em falta — aviso quando chegar', bg: '#FEF3D6', fg: '#7A5600' }
+      ],
+      isRetirar: ret, isEntrega: !ret,
+      retirarBorder: r.b, retirarBg: r.bg, entregaBorder: e.b, entregaBg: e.bg,
+      pickRetirar: () => this.setState({ mode: 'retirar' }),
+      pickEntrega: () => this.setState({ mode: 'entrega' }),
+      slots: SLOTS.map((l, i) => ({ label: l, border: i === S.slot ? '2px solid #005A8E' : '1px solid #DCE3E8', bg: i === S.slot ? '#005A8E' : '#FFFFFF', fg: i === S.slot ? '#FFFFFF' : '#0B2540', pick: () => this.setState({ slot: i }) })),
+      modeLabel: ret ? 'Retirada na farmácia' : 'Entrega em casa',
+      track: stages.map((s, i) => { const done = i <= S.stage; return { label: s[0], when: done ? s[1] : 'Aguardando', dot: done ? '#005A8E' : '#FFFFFF', ring: done ? '#005A8E' : '#CBD5DD', color: done ? '#0B2540' : '#6B7280' }; }),
+      asideTitle: ret ? 'Mostre este código na farmácia' : 'Código de confirmação da entrega',
+      asideText: ret ? 'Apresente o código e um documento com foto. Outra pessoa pode retirar com seu documento.' : 'Informe este código ao entregador para receber os remédios.',
+      advance: () => this.setState({ stage: (S.stage + 1) % 4 }),
+      next: () => this.setState({ step: Math.min(3, S.step + 1), stage: 1 }),
+      back: () => this.setState({ step: Math.max(1, S.step - 1) })
+    };
+  }
+}
+</script>
+</body>
+</html>

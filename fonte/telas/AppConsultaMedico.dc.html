@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>App — Escolher médico</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#005A8E}a:hover{color:#00476F}
+button{font-family:inherit;cursor:pointer}
+input,textarea,select{font-family:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:4px solid #FFC83D;outline-offset:2px}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F5F8FA; color: #0B2540; font-family: 'Atkinson Hyperlegible', system-ui, sans-serif; font-size: 18px; display: flex; flex-direction: column; overflow: hidden">
+<div style="background: #FFFFFF; border-bottom: 1px solid #DDE6EE; padding: 18px 16px 14px; display: flex; flex-direction: column; gap: 12px; flex: none">
+<div style="display: flex; align-items: center; gap: 12px"><a href="AppConsultaUBS.dc.html" aria-label="Voltar" style="width: 52px; height: 52px; box-sizing: border-box; border-radius: 14px; border: 2px solid #D3E2EC; display: flex; align-items: center; justify-content: center; flex: none"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0B2540" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></a><h1 style="margin: 0; font-family: Poppins; font-size: 22px; font-weight: 700; color: #0B2540">Marcar consulta</h1></div><div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 16px; font-weight: 700; color: #4A5B6C">Passo 3 de 5 · Médico</span><div style="height: 8px; border-radius: 4px; background: #D3E2EC"><div style="height: 8px; border-radius: 4px; background: #005A8E; width: 60%"></div></div></div></div>
+<div style="flex: 1; overflow-y: auto; padding: 20px 16px; display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-family: Poppins; font-size: 22px; line-height: 1.25; color: #0B2540">Escolha o médico</h2><p style="margin: 0; font-size: 18px; line-height: 1.45; color: #4A5B6C; ">UBS Unidade 1 · Clínico geral</p><a href="AppConsultaCalendario.dc.html" style="display: flex; gap: 14px; padding: 16px; border-radius: 20px; background: #FFFFFF; border: 2px solid #D3E2EC; color: #0B2540; text-decoration: none">
+<span style="width: 60px; height: 60px; border-radius: 50%; background: #EEF5FA; color: #005A8E; font-family: Poppins; font-weight: 700; font-size: 21px; display: flex; align-items: center; justify-content: center; flex: none">AR</span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 700; font-size: 20px">Dra. Ana Paula Ribeiro</span><span style="font-size: 16px; color: #4A5B6C">Clínica geral</span>
+<span style="display: flex; gap: 6px; align-items: center; font-size: 17px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4A5B6C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path></svg>Seg, Qua e Sex · manhã</span>
+<span style="align-self: flex-start; padding: 4px 10px; border-radius: 999px; background: #E3F5EA; color: #1B7A43; font-size: 16px; font-weight: 700">Próxima vaga: Qua, 02/12</span><span style="font-size: 15px; color: #4A5B6C">12 vagas nas próximas 2 semanas</span></span></a><a href="AppConsultaCalendario.dc.html" style="display: flex; gap: 14px; padding: 16px; border-radius: 20px; background: #FFFFFF; border: 2px solid #D3E2EC; color: #0B2540; text-decoration: none">
+<span style="width: 60px; height: 60px; border-radius: 50%; background: #EEF5FA; color: #005A8E; font-family: Poppins; font-weight: 700; font-size: 21px; display: flex; align-items: center; justify-content: center; flex: none">CM</span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 700; font-size: 20px">Dr. Carlos Eduardo Moura</span><span style="font-size: 16px; color: #4A5B6C">Clínico geral</span>
+<span style="display: flex; gap: 6px; align-items: center; font-size: 17px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4A5B6C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path></svg>Ter e Qui · manhã e tarde</span>
+<span style="align-self: flex-start; padding: 4px 10px; border-radius: 999px; background: #E3F5EA; color: #1B7A43; font-size: 16px; font-weight: 700">Próxima vaga: Ter, 01/12</span><span style="font-size: 15px; color: #4A5B6C">8 vagas nas próximas 2 semanas</span></span></a><a href="AppConsultaCalendario.dc.html" style="display: flex; gap: 14px; padding: 16px; border-radius: 20px; background: #FFFFFF; border: 2px solid #D3E2EC; color: #0B2540; text-decoration: none">
+<span style="width: 60px; height: 60px; border-radius: 50%; background: #EEF5FA; color: #005A8E; font-family: Poppins; font-weight: 700; font-size: 21px; display: flex; align-items: center; justify-content: center; flex: none">FL</span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 700; font-size: 20px">Dra. Fernanda Lima</span><span style="font-size: 16px; color: #4A5B6C">Médica da família</span>
+<span style="display: flex; gap: 6px; align-items: center; font-size: 17px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4A5B6C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path></svg>Seg a Sex · tarde</span>
+<span style="align-self: flex-start; padding: 4px 10px; border-radius: 999px; background: #FFF6DC; color: #5A3E00; font-size: 16px; font-weight: 700">Agenda cheia esta semana</span><span style="font-size: 15px; color: #4A5B6C">Próxima vaga: Seg, 07/12</span></span></a><a href="AppConsultaCalendario.dc.html" style="text-align: center; font-size: 18px; font-weight: 700; padding: 8px">Tanto faz — quero a primeira vaga</a>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

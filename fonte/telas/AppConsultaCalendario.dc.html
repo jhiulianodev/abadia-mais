@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>App — Dia e horário</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#005A8E}a:hover{color:#00476F}
+button{font-family:inherit;cursor:pointer}
+input,textarea,select{font-family:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:4px solid #FFC83D;outline-offset:2px}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F5F8FA; color: #0B2540; font-family: 'Atkinson Hyperlegible', system-ui, sans-serif; font-size: 18px; display: flex; flex-direction: column; overflow: hidden">
+<div style="background: #FFFFFF; border-bottom: 1px solid #DDE6EE; padding: 18px 16px 14px; display: flex; flex-direction: column; gap: 12px; flex: none">
+<div style="display: flex; align-items: center; gap: 12px"><a href="AppConsultaMedico.dc.html" aria-label="Voltar" style="width: 52px; height: 52px; box-sizing: border-box; border-radius: 14px; border: 2px solid #D3E2EC; display: flex; align-items: center; justify-content: center; flex: none"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0B2540" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></a><h1 style="margin: 0; font-family: Poppins; font-size: 22px; font-weight: 700; color: #0B2540">Marcar consulta</h1></div><div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 16px; font-weight: 700; color: #4A5B6C">Passo 4 de 5 · Dia e horário</span><div style="height: 8px; border-radius: 4px; background: #D3E2EC"><div style="height: 8px; border-radius: 4px; background: #005A8E; width: 80%"></div></div></div></div>
+<div style="flex: 1; overflow-y: auto; padding: 20px 16px; display: flex; flex-direction: column; gap: 12px">
+
+<div style="display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 18px; background: #FFFFFF; border: 2px solid #D3E2EC">
+<span style="width: 50px; height: 50px; border-radius: 50%; background: #EEF5FA; color: #005A8E; font-family: Poppins; font-weight: 700; font-size: 18px; display: flex; align-items: center; justify-content: center; flex: none">AR</span>
+<span style="display: flex; flex-direction: column"><span style="font-weight: 700; font-size: 18px">Dra. Ana Paula Ribeiro</span><span style="font-size: 16px; color: #4A5B6C">Clínica geral · UBS Unidade 1</span></span></div>
+<div style="padding: 14px 12px; border-radius: 20px; background: #FFFFFF; border: 2px solid #D3E2EC; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; align-items: center">
+<button type="button" onClick="{{ prevMonth }}" aria-label="Mês anterior" style="width: 48px; height: 48px; border-radius: 12px; border: 2px solid #D3E2EC; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B2540" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></button>
+<span style="font-family: Poppins; font-weight: 700; font-size: 21px">{{ monthLabel }}</span>
+<button type="button" onClick="{{ nextMonth }}" aria-label="Próximo mês" style="width: 48px; height: 48px; border-radius: 12px; border: 2px solid #D3E2EC; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0B2540" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg></button></div>
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; text-align: center; font-size: 15px; font-weight: 700; color: #4A5B6C"><span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span></div>
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px">
+<sc-for list="{{ cells }}" as="c" hint-placeholder-count="35">
+<button type="button" onClick="{{ c.pick }}" aria-label="{{ c.aria }}" style="height: 44px; border-radius: 12px; border: {{ c.border }}; background: {{ c.bg }}; color: {{ c.fg }}; font-size: 18px; font-weight: 700; text-decoration: {{ c.deco }}; padding: 0">{{ c.label }}</button>
+</sc-for></div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 15px; color: #4A5B6C">
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 16px; height: 16px; border-radius: 5px; background: #EEF5FA; border: 2px solid #005A8E"></span>Tem vaga</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 16px; height: 16px; border-radius: 5px; background: #FFF6DC; border: 2px solid #E0B44A"></span>Poucas vagas</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 16px; height: 16px; border-radius: 5px; background: #ECEFF2"></span>Sem vaga</span></div>
+</div>
+<p style="margin: 4px 0 0; font-weight: 700; font-size: 19px">Horários de {{ dayLabel }}</p>
+<sc-if value="{{ hasTimes }}" hint-placeholder-val="{{ true }}">
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{ times }}" as="t" hint-placeholder-count="9">
+<button type="button" onClick="{{ t.pick }}" aria-label="{{ t.aria }}" style="min-height: 54px; border-radius: 14px; border: {{ t.border }}; background: {{ t.bg }}; color: {{ t.fg }}; font-size: 19px; font-weight: 700; text-decoration: {{ t.deco }}">{{ t.time }}</button>
+</sc-for></div>
+</sc-if>
+<sc-if value="{{ noTimes }}" hint-placeholder-val="{{ false }}"><p style="margin: 0; font-size: 17px; line-height: 1.45; color: #4A5B6C; ">Escolha um dia com vaga no calendário.</p></sc-if>
+<div style="padding: 14px; border-radius: 18px; background: #EEF5FA; font-size: 18px; line-height: 1.4">Você escolheu: <b>{{ summary }}</b></div>
+<a href="AppConsultaConfirmar.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 60px; border-radius: 18px; background: #005A8E; color: #FFFFFF; font-size: 20px; font-weight: 700; text-decoration: none; box-sizing: border-box">Continuar</a>
+
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { m: 0, day: 2, time: 2 }; }
+  renderVals() {
+    const S = this.state;
+    const M = [{ name: 'Dezembro de 2026', first: 2, len: 31, full: [4, 16], few: [9, 18], off: [25], minDay: 2 },
+               { name: 'Janeiro de 2027', first: 5, len: 31, full: [], few: [6, 8], off: [1], minDay: 1 }][S.m];
+    const docDays = [1, 3, 5];
+    const W = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+    const cells = [];
+    for (let i = 0; i < M.first; i++) cells.push({ label: '', aria: '', border: '0', bg: 'transparent', fg: 'transparent', deco: 'none', pick: () => {} });
+    for (let d = 1; d <= M.len; d++) {
+      const wd = (M.first + d - 1) % 7;
+      const works = docDays.includes(wd) && d >= M.minDay && !M.off.includes(d);
+      const full = works && M.full.includes(d);
+      const few = works && M.few.includes(d);
+      const ok = works && !full;
+      const sel = ok && d === S.day;
+      let c = { border: '0', bg: '#FFFFFF', fg: '#9AA6B2', deco: 'none' };
+      if (full) c = { border: '0', bg: '#ECEFF2', fg: '#7A8794', deco: 'line-through' };
+      else if (sel) c = { border: '3px solid #0B2540', bg: '#005A8E', fg: '#FFFFFF', deco: 'none' };
+      else if (few) c = { border: '2px solid #E0B44A', bg: '#FFF6DC', fg: '#0B2540', deco: 'none' };
+      else if (ok) c = { border: '2px solid #005A8E', bg: '#EEF5FA', fg: '#0B2540', deco: 'none' };
+      cells.push({ label: String(d), aria: d + (ok ? ' com vaga' : ' sem vaga'), ...c, pick: () => { if (ok) this.setState({ day: d, time: -1 }); } });
+    }
+    const wdSel = (M.first + S.day - 1) % 7;
+    const validDay = docDays.includes(wdSel) && S.day >= M.minDay && !M.off.includes(S.day) && !M.full.includes(S.day);
+    const T = ['07:30', '08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30'];
+    const taken = M.few.includes(S.day) ? [0, 1, 2, 4, 5, 7] : [1, 5];
+    const times = T.map((t, i) => {
+      const busy = taken.includes(i), sel = i === S.time;
+      const c = busy ? { border: '0', bg: '#ECEFF2', fg: '#7A8794', deco: 'line-through' } : sel ? { border: '3px solid #0B2540', bg: '#005A8E', fg: '#FFFFFF', deco: 'none' } : { border: '2px solid #D3E2EC', bg: '#FFFFFF', fg: '#0B2540', deco: 'none' };
+      return { time: t, aria: t + (busy ? ' ocupado' : ' livre'), ...c, pick: () => { if (!busy) this.setState({ time: i }); } };
+    });
+    const mon = S.m === 0 ? '12' : '01';
+    const dd = String(S.day).padStart(2, '0') + '/' + mon;
+    return {
+      monthLabel: M.name, cells, times, hasTimes: validDay, noTimes: !validDay,
+      dayLabel: validDay ? W[wdSel].toLowerCase() + ', ' + dd : 'um dia',
+      summary: validDay && S.time >= 0 ? W[wdSel] + ', ' + dd + ' às ' + T[S.time] : 'escolha dia e horário',
+      prevMonth: () => this.setState({ m: 0, day: 2, time: -1 }),
+      nextMonth: () => this.setState({ m: 1, day: 6, time: -1 })
+    };
+  }
+}
+</script>
+</body>
+</html>

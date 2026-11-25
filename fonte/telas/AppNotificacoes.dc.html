@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>App — Notificações</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#005A8E}a:hover{color:#00476F}
+button{font-family:inherit;cursor:pointer}
+input,textarea,select{font-family:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:4px solid #FFC83D;outline-offset:2px}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F5F8FA; color: #0B2540; font-family: 'Atkinson Hyperlegible', system-ui, sans-serif; font-size: 18px; display: flex; flex-direction: column; overflow: hidden">
+<div style="background: #FFFFFF; border-bottom: 1px solid #DDE6EE; padding: 18px 16px 14px; display: flex; flex-direction: column; gap: 12px; flex: none">
+<div style="display: flex; align-items: center; gap: 12px"><a href="AppInicio.dc.html" aria-label="Voltar" style="width: 52px; height: 52px; box-sizing: border-box; border-radius: 14px; border: 2px solid #D3E2EC; display: flex; align-items: center; justify-content: center; flex: none"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0B2540" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></a><h1 style="margin: 0; font-family: Poppins; font-size: 22px; font-weight: 700; color: #0B2540">Avisos</h1></div></div>
+<div style="flex: 1; overflow-y: auto; padding: 20px 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; gap: 12px; padding: 14px; border-radius: 18px; background: #FFFFFF; border: 2px solid #D3E2EC"><span style="width: 46px; height: 46px; border-radius: 14px; background: #FFF6DC; display: flex; align-items: center; justify-content: center; flex: none"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8A6100" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 6v6l4 2"></path></svg></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 700; font-size: 18px; line-height: 1.3">Farmácia verificando sua receita</span><span style="font-size: 15px; color: #4A5B6C">Pedido nº 4821 · agora</span></span></div><div style="display: flex; gap: 12px; padding: 14px; border-radius: 18px; background: #FFFFFF; border: 2px solid #D3E2EC"><span style="width: 46px; height: 46px; border-radius: 14px; background: #EEF5FA; display: flex; align-items: center; justify-content: center; flex: none"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#005A8E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path></svg></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 700; font-size: 18px; line-height: 1.3">Lembrete: consulta quarta, 02/12 às 08:30</span><span style="font-size: 15px; color: #4A5B6C">UBS Unidade 1 · há 1 hora</span></span></div><div style="display: flex; gap: 12px; padding: 14px; border-radius: 18px; background: #FFFFFF; border: 2px solid #D3E2EC"><span style="width: 46px; height: 46px; border-radius: 14px; background: #EEF5FA; display: flex; align-items: center; justify-content: center; flex: none"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#005A8E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h14v12H1zM15 9h4l3 3v4h-7M5.5 21a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM18.5 21a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path></svg></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 700; font-size: 18px; line-height: 1.3">Insulina aguardando coleta</span><span style="font-size: 15px; color: #4A5B6C">O motorista da Saúde vai buscar · ontem</span></span></div><div style="display: flex; gap: 12px; padding: 14px; border-radius: 18px; background: #FFFFFF; border: 2px solid #D3E2EC"><span style="width: 46px; height: 46px; border-radius: 14px; background: #FDECEC; display: flex; align-items: center; justify-content: center; flex: none"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B42318" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"></path></svg></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 700; font-size: 18px; line-height: 1.3">Receita do pedido 4688 precisa de nova foto</span><span style="font-size: 15px; color: #4A5B6C">Toque para ver o motivo · 24/11</span></span></div><div style="display: flex; gap: 12px; padding: 14px; border-radius: 18px; background: #FFFFFF; border: 2px solid #D3E2EC"><span style="width: 46px; height: 46px; border-radius: 14px; background: #E3F5EA; display: flex; align-items: center; justify-content: center; flex: none"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B7A43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 700; font-size: 18px; line-height: 1.3">Remédio entregue</span><span style="font-size: 15px; color: #4A5B6C">Pedido nº 4702 · 28/10</span></span></div><p style="margin: 0; font-size: 16px; line-height: 1.45; color: #4A5B6C; text-align: center">Os mesmos avisos também chegam no seu WhatsApp.</p>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

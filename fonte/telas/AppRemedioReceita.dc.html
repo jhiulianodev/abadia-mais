@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>App — Enviar receita</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#005A8E}a:hover{color:#00476F}
+button{font-family:inherit;cursor:pointer}
+input,textarea,select{font-family:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:4px solid #FFC83D;outline-offset:2px}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F5F8FA; color: #0B2540; font-family: 'Atkinson Hyperlegible', system-ui, sans-serif; font-size: 18px; display: flex; flex-direction: column; overflow: hidden">
+<div style="background: #FFFFFF; border-bottom: 1px solid #DDE6EE; padding: 18px 16px 14px; display: flex; flex-direction: column; gap: 12px; flex: none">
+<div style="display: flex; align-items: center; gap: 12px"><a href="AppInicio.dc.html" aria-label="Voltar" style="width: 52px; height: 52px; box-sizing: border-box; border-radius: 14px; border: 2px solid #D3E2EC; display: flex; align-items: center; justify-content: center; flex: none"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0B2540" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg></a><h1 style="margin: 0; font-family: Poppins; font-size: 22px; font-weight: 700; color: #0B2540">Pedir remédio</h1></div><div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 16px; font-weight: 700; color: #4A5B6C">Passo 1 de 4 · Receita</span><div style="height: 8px; border-radius: 4px; background: #D3E2EC"><div style="height: 8px; border-radius: 4px; background: #005A8E; width: 25%"></div></div></div></div>
+<div style="flex: 1; overflow-y: auto; padding: 20px 16px; display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-family: Poppins; font-size: 22px; line-height: 1.25; color: #0B2540">Envie a receita</h2><p style="margin: 0; font-size: 18px; line-height: 1.45; color: #4A5B6C; ">Pode ser foto ou arquivo (PDF).</p>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 8px; border-radius: 20px; background: #005A8E; color: #FFFFFF; font-weight: 700; font-size: 18px; text-decoration: none; text-align: center"><svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2zM12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path></svg>Tirar foto</a>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px 8px; border-radius: 20px; background: #FFFFFF; border: 2px solid #D3E2EC; color: #0B2540; font-weight: 700; font-size: 18px; text-decoration: none; text-align: center"><svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#005A8E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h5"></path></svg>Enviar arquivo</a></div>
+<div style="display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 18px; background: #FFFFFF; border: 2px solid #1B7A43">
+<div style="width: 70px; height: 90px; border-radius: 10px; background: #F1F4F6; border: 1px solid #DDE6EE; display: flex; flex-direction: column; gap: 6px; padding: 10px 8px; box-sizing: border-box; flex: none"><span style="height: 4px; background: #B8C4CE; border-radius: 2px"></span><span style="height: 4px; width: 70%; background: #B8C4CE; border-radius: 2px"></span><span style="height: 4px; background: #B8C4CE; border-radius: 2px"></span><span style="height: 4px; width: 50%; background: #B8C4CE; border-radius: 2px"></span></div>
+<div style="flex: 1"><p style="margin: 0; font-weight: 700; font-size: 19px; color: #1B7A43">Receita anexada</p><p style="margin: 2px 0 0; font-size: 16px; color: #4A5B6C">receita_25-11.jpg</p><a href="#" style="font-size: 17px; font-weight: 700">Trocar</a></div></div>
+<label style="display: flex; flex-direction: column; gap: 6px; font-weight: 700; font-size: 17px">Escreva aqui se quiser explicar algo<textarea rows="3" style="padding: 12px 14px; border-radius: 14px; border: 2px solid #8FB3CC; font-size: 18px; color: #0B2540; resize: none">Remédio de uso contínuo. Preciso para 2 meses.</textarea></label>
+<label style="display: flex; gap: 12px; align-items: flex-start; font-size: 18px; line-height: 1.4; padding: 4px 0"><input type="checkbox" checked style="width: 26px; height: 26px; flex: none; margin-top: 2px">Confirmo que a receita é verdadeira e está dentro da validade.</label>
+<p style="margin: 0; font-size: 16px; line-height: 1.45; color: #4A5B6C; ">A Farmácia Municipal vai conferir a receita antes de separar.</p><a href="AppRemedioPaciente.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 60px; border-radius: 18px; background: #005A8E; color: #FFFFFF; font-size: 20px; font-weight: 700; text-decoration: none; box-sizing: border-box">Continuar</a>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
